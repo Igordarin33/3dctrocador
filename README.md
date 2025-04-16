@@ -131,3 +131,5 @@ Após seguir os passos acima, basta reiniciar o Klipper e seu sistema de troca d
 ## Arquivos do printables e listas de peças: 
 [Printables](https://www.printables.com/model/1216331-3dchameleon-k1ck1k1max-arduino-uno-cnc-shield-v3)
 
+
+Créditos: [3DChameleon]([https://www.printables.com/model/1216331-3dchameleon-k1ck1k1max-arduino-uno-cnc-shield-v3](https://www.3dchameleon.com/))
