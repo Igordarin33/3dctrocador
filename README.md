@@ -49,3 +49,7 @@ Depois de configurado, você poderá atualizar suas macros diretamente pela inte
 Após seguir os passos acima, basta reiniciar o Klipper e seu sistema de troca de cor estará instalado e pronto para uso! Basta terminar de ajustar o Gcode de seu fatiador
 
 
+##Arquivos do printables e listas de peças: 
+[Printables]([https://pages.github.com/](https://www.printables.com/model/1216331-3dchameleon-k1ck1k1max-arduino-uno-cnc-shield-v3))
+
+
