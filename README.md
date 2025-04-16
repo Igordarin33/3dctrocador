@@ -16,19 +16,21 @@ Este projeto permite usar o sistema de troca de cor (como o 3D Chameleon) de for
 ## 🚀 Instalação
 
 Execute os comandos abaixo diretamente no terminal da sua impressora:
-[git clone --depth 1 https://github.com/Igordarin33/3dctrocador.git /usr/data/printer_data/config/3DC]
-
+```
+git clone --depth 1 https://github.com/Igordarin33/3dctrocador.git /usr/data/printer_data/config/3DC
+```
 ---
 
-##🔧 Ativando o troca_cor.cfg
+## 🔧 Ativando o troca_cor.cfg
 Edite seu arquivo principal de configuração printer.cfg e adicione esta linha no começo:
+```
 [include 3DC/troca_cor.cfg]
-
+```
 ---
 
-##🛠️ Configurando Moonraker para atualizações automáticas
+## 🛠️ Configurando Moonraker para atualizações automáticas
 Edite o arquivo /usr/data/printer_data/config/moonraker.conf e adicione:
-
+```
 [update_manager 3dc_macros]
 type: git_repo
 channel: stable
@@ -37,10 +39,10 @@ origin: https://github.com/Igordarin33/3dctrocador.git
 install_script: install.sh
 managed_services:
   klipper
-  
+  ```
 ---
 
-##♻️ Atualizações futuras
+## ♻️ Atualizações futuras
 Depois de configurado, você poderá atualizar suas macros diretamente pela interface do Moonraker (em "Atualizações" no Fluidd/Mainsail)
 
 ✅ Pronto!
