@@ -1,7 +1,7 @@
 
 # Instalação do 3DC Trocador (Troca de cor para Klipper)
 
-Este projeto permite usar o sistema de troca de cor (como o 3D Chameleon) de forma prática com o Klipper, com atualizações automáticas via Moonraker.
+Este projeto permite usar o sistema de troca de cor (como o 3D Chameleon) de forma prática com o Klipper, feito para k1(C,SE,MAX) com atualizações automáticas via Moonraker.
 
 ---
 
