@@ -1,0 +1,30 @@
+M118 "Iniciando troca de filamento..."  ; Mensagem para o terminal  
+{if previous_extruder>-1}  
+{if next_extruder!=previous_extruder}  
+G92 E0                 
+M83                                        
+CHAMELEON_PURGE_POSITION
+RFE3DC
+M118 "Trocando para a cor {next_extruder}" 
+{if next_extruder==0}  
+TEXTRUSER0   
+{endif}   
+{if next_extruder==1}  
+TEXTRUSER1
+{endif}   
+{if next_extruder==2}  
+TEXTRUSER2  
+{endif}   
+{if next_extruder==3}  
+TEXTRUSER3 
+{endif}                                  
+G1 E[first_flush_volume] F300
+PURGA_FULL
+G92 E0            			  
+M104 S[nozzle_temperature]  		  
+M109 S[nozzle_temperature]  		  
+M118 "Troca de Filamento concluida!"  
+G90               			  
+M83               			  
+{endif}  
+{endif}  
