@@ -132,7 +132,7 @@ Após seguir os passos acima, basta reiniciar o Klipper e seu sistema de troca d
 # ❓ Como Funciona?
 ## 🖲️ Seleção de Extrusora
 Cada extrusora é selecionada com base no tempo de pressão do botão:
-
+```
 Pulso	  Ação
   1º	  Seleciona T0 (filamento 1)
   2º	  Seleciona T1 (filamento 2)
@@ -143,7 +143,7 @@ Pulso	  Ação
   7º	  Apenas início (sem movimentar filamento)
   8º	  Avança para o próximo filamento
   9º	  Seleciona filamento aleatório
-  
+  ```
 ## 🤖 Funcionamento Interno
 O sistema usa dois sensores de filamento:
 Um para detectar a entrada do filamento (sensor traseiro).
