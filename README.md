@@ -161,7 +161,7 @@ A remoção funciona de forma semelhante, moldando a ponta do filamento para fac
 
 # 💖 Apoie este Projeto
 Se este projeto te ajudou ou você acredita no que estou construindo, considere apoiar com uma doação. Isso me motiva a continuar melhorando, atualizando e criando novas ferramentas gratuitas para a comunidade 3D!
-🔗 Chave Pix (e-mail): [igordarin34@gmail.com]
+🔗 Chave Pix (e-mail): [ igordarin34@gmail.com ]
 
 ##Créditos: 
 [3DChameleon](https://www.3dchameleon.com)
