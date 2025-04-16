@@ -1,0 +1,16 @@
+INICIO3DC
+M118 "Selecionando a cor inicial..."  
+{if initial_extruder==0}
+EXTRUSER0
+{endif}
+{if initial_extruder==1}
+EXTRUSE1
+{endif}
+{if initial_extruder==2}
+EXTRUSER2
+{endif}
+{if initial_extruder==3}
+EXTRUSER3
+{endif}  
+G4 P400                  
+INICIO_PURGE_MODE_REMOVE
