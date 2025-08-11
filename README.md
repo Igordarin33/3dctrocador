@@ -29,17 +29,13 @@ Edite seu arquivo principal de configuração printer.cfg e adicione esta linha 
 ### Depois comente o codigo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2]
 Em seguida adicione os novos: 
 ```
+#sensor traseiro
 [filament_switch_sensor filament_sensor]
 pause_on_runout: true
 switch_pin: PC15
 event_delay: 1.5
 pause_delay: 0.25
 insert_gcode:
-#  {% if printer.extruder.temperature < 140 %}
-#    M118 "Preaquecendo até 140°C"
-#    SET_HEATER_TEMPERATURE HEATER=extruder TARGET=140
-#  {% endif %}
-
   {% if "x" not in printer.toolhead.homed_axes or
         "y" not in printer.toolhead.homed_axes or
         "z" not in printer.toolhead.homed_axes %}
@@ -48,32 +44,31 @@ insert_gcode:
   {% endif %}
 
   M118 "Filamento removido ou escasso"
+  G90
   G0 X228.94 Y-0.49 F15000
-  G4 P1000 #Tempo para sai do hub
+  G4 P2000 #Tempo para sair do hub( 4x1)
   SET_PIN PIN=troca_cor VALUE=0
 runout_gcode:
   M118 "Filamento inserido"
   
-
 #sensor da extrusora
 [filament_switch_sensor filament_sensor_2]
-pause_on_runout: false
+pause_on_runout: true
 switch_pin: !nozzle_mcu:PA10
 event_delay: 1.5
 pause_delay: 0.25
 insert_gcode:
-  {% if printer.extruder.temperature < 140 %}
-    M118 "Preaquecendo até 140°C"
-    SET_HEATER_TEMPERATURE HEATER=extruder TARGET=140
-  {% endif %}
-
   {% if "x" not in printer.toolhead.homed_axes or
         "y" not in printer.toolhead.homed_axes or
         "z" not in printer.toolhead.homed_axes %}
     M118 "Homing necessário - executando G28"
     G28
   {% endif %}
-  G1 E15
+  {% if printer.extruder.temperature < 220 %}
+      M118 Preaquecendo até 220°C
+      SET_HEATER_TEMPERATURE HEATER=extruder TARGET=220
+      G1 E15
+  {% endif %}
   SET_PIN PIN=troca_cor VALUE=0  #Solta o botão
   CHAMELEON_PURGE_POSITION
   LOAD_MATERIAL
@@ -88,6 +83,7 @@ runout_gcode:
     G90
     SET_HEATER_TEMPERATURE HEATER=extruder TARGET=0
   {% endif %}
+
 ```
 ---
 
