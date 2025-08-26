@@ -31,7 +31,7 @@ Edite seu arquivo principal de configuração printer.cfg e adicione esta linha 
 
 ```
 ---
-
+```
 ## 🛠️ Configurando Moonraker para atualizações automáticas
 Edite o arquivo /usr/data/printer_data/config/moonraker.conf e adicione:
 ```
@@ -43,7 +43,7 @@ origin: https://github.com/Igordarin33/3dctrocador.git
 install_script: install.sh
 managed_services:
   klipper
-  ```
+```  
 ---
 ## 🛠️ Configurando gcode_macro.cfg
 Depois comente o codigo de carregar o filamento original, e adicione esse: 
@@ -59,17 +59,18 @@ gcode:
   G91
   G1 E45 F300
   LOAD_MATERIAL_RESTORE_FAN2
+  
 ```
 
 
 ## ♻️ Atualizações futuras
 Depois de configurado, você poderá atualizar suas macros diretamente pela interface do Moonraker (em "Atualizações" no Fluidd/Mainsail)
 
-✅ Pronto!
+#✅ Pronto!
 Após seguir os passos acima, basta reiniciar o Klipper e seu sistema de troca de cor estará instalado e pronto para uso! Basta terminar de ajustar o Gcode de seu fatiador
 
-```
 # ❓ Como Funciona?
+
 ```
 ## 🖲️ Seleção de Extrusora
 Cada extrusora é selecionada com base no tempo de pressão do botão:
