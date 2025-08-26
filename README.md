@@ -68,12 +68,12 @@ Depois de configurado, você poderá atualizar suas macros diretamente pela inte
 ✅ Pronto!
 Após seguir os passos acima, basta reiniciar o Klipper e seu sistema de troca de cor estará instalado e pronto para uso! Basta terminar de ajustar o Gcode de seu fatiador
 
-
-
+```
 # ❓ Como Funciona?
+```
 ## 🖲️ Seleção de Extrusora
 Cada extrusora é selecionada com base no tempo de pressão do botão:
-```
+
 Pulso	  Ação
   1º	  Seleciona T0 (filamento 1)
   2º	  Seleciona T1 (filamento 2)
