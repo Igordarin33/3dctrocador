@@ -21,68 +21,13 @@ git clone --depth 1 https://github.com/Igordarin33/3dctrocador.git /usr/data/pri
 ```
 ---
 
-## 🔧 Ativando o troca_cor.cfg
+## 🔧 Ativando o camaleaoTURBO.cfg
 Edite seu arquivo principal de configuração printer.cfg e adicione esta linha no começo:
 ```
-[include 3DC/troca_cor.cfg]
-```
-### Depois comente o codigo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2]
-Em seguida adicione os novos: 
-```
-#sensor traseiro
-[filament_switch_sensor filament_sensor]
-pause_on_runout: true
-switch_pin: PC15
-event_delay: 1.5
-pause_delay: 0.25
-insert_gcode:
-  {% if "x" not in printer.toolhead.homed_axes or
-        "y" not in printer.toolhead.homed_axes or
-        "z" not in printer.toolhead.homed_axes %}
-    M118 "Homing necessário - executando G28"
-    G28
-  {% endif %}
+[include 3DC/camaleaoTURBO.cfg]
 
-  M118 "Filamento removido ou escasso"
-  G90
-  G0 X228.94 Y-0.49 F15000
-  G4 P2000 #Tempo para sair do hub( 4x1)
-  SET_PIN PIN=troca_cor VALUE=0
-runout_gcode:
-  M118 "Filamento inserido"
-  
-#sensor da extrusora
-[filament_switch_sensor filament_sensor_2]
-pause_on_runout: true
-switch_pin: !nozzle_mcu:PA10
-event_delay: 1.5
-pause_delay: 0.25
-insert_gcode:
-  {% if "x" not in printer.toolhead.homed_axes or
-        "y" not in printer.toolhead.homed_axes or
-        "z" not in printer.toolhead.homed_axes %}
-    M118 "Homing necessário - executando G28"
-    G28
-  {% endif %}
-  {% if printer.extruder.temperature < 220 %}
-      M118 Preaquecendo até 220°C
-      SET_HEATER_TEMPERATURE HEATER=extruder TARGET=220
-      G1 E15
-  {% endif %}
-  SET_PIN PIN=troca_cor VALUE=0  #Solta o botão
-  CHAMELEON_PURGE_POSITION
-  LOAD_MATERIAL
-  CORTARFDESCARGA
-#SET_HEATER_TEMPERATURE HEATER=extruder TARGET=0
-runout_gcode:
-  M118 "filament runout"
-  {% if printer.extruder.can_extrude|lower == 'true' %}
-    G91
-    G1 E-30 F180
-    G1 E-50 F2000
-    G90
-    SET_HEATER_TEMPERATURE HEATER=extruder TARGET=0
-  {% endif %}
+```
+### Depois comente o codigo completo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2]
 
 ```
 ---
@@ -134,21 +79,26 @@ Pulso	  Ação
   2º	  Seleciona T1 (filamento 2)
   3º	  Seleciona T2 (filamento 3)
   4º	  Seleciona T3 (filamento 4)
-  5º	  Início e carga de T0 (use no início do G-code)
-  6º	  Descarrega o filamento atual (use no G-code final)
-  7º	  Apenas início (sem movimentar filamento)
-  8º	  Avança para o próximo filamento
-  9º	  Seleciona filamento aleatório
+  5º	  Seleciona T4 (filamento 5)
+  6º	  Seleciona T5 (filamento 6)
+  7º	  Seleciona T6 (filamento 7)
+  8º	  Seleciona T7 (filamento 8)
+  9º	  Seleciona Carregar/Inicio T0
+  10º	  Seleciona Descarregar/Inicio
+  11º	  Seleciona Inicio
+  12º	  Seleciona Próximo
+  13º	  Seleciona Aleatório
+  14º	  Seleciona Pulso Extra
+  
   ```
 ## 🤖 Funcionamento Interno
 O sistema usa dois sensores de filamento:
-Um para detectar a entrada do filamento (sensor traseiro).
-Outro na extrusora.
+Um para detectar a entrada do filamento (sensor da extrusora).
+Um para detectar a saída do filamento (sensor traseiro original).
 
 A impressora ativa o pino PA0 para selecionar e injetar o filamento desejado.
 Quando o filamento atinge o sensor da extrusora, ele é automaticamente puxado.
 A remoção funciona de forma semelhante, moldando a ponta do filamento para facilitar a troca.
-
 
 
 
