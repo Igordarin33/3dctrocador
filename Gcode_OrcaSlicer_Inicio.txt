@@ -1,16 +1,28 @@
 INICIO3DC
 M118 "Selecionando a cor inicial..."  
 {if initial_extruder==0}
-EXTRUSER0
+T0
 {endif}
 {if initial_extruder==1}
-EXTRUSE1
+T1
 {endif}
 {if initial_extruder==2}
-EXTRUSER2
+T2
 {endif}
 {if initial_extruder==3}
-EXTRUSER3
+T3
+{endif}
+{if initial_extruder==4}
+T4
+{endif}
+{if initial_extruder==5}
+T5
+{endif}
+{if initial_extruder==6}
+T6
+{endif}
+{if initial_extruder==7}
+T7
 {endif}  
 G4 P400                  
-INICIO_PURGE_MODE_REMOVE
+INICIO_DOIS
