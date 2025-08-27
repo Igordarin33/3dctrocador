@@ -101,8 +101,10 @@ A impressora ativa o pino PA0 para selecionar e injetar o filamento desejado.
 Quando o filamento atinge o sensor da extrusora, ele é automaticamente puxado.
 A remoção funciona de forma semelhante, moldando a ponta do filamento para facilitar a troca.
 
+##Entre em nosso grupo do Whatsapp: 
+[Whatsapp](https://chat.whatsapp.com/DzZdQBhz2oDE57JQHPR3aZ)
 
-
+  
 ## Arquivos do printables e listas de peças: 
 [Printables](https://www.printables.com/model/1216331-3dchameleon-k1ck1k1max-arduino-uno-cnc-shield-v3)
 
