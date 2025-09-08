@@ -10,6 +10,10 @@ Este projeto permite usar o sistema de troca de cor (como o 3D Chameleon) de for
 - Klipper já instalado e funcionando
 - Acesso SSH ou terminal na sua impressora
 - Internet ativa na impressora
+- Hardware 3d Chamaleon para 4 ou 8 cores;
+    - Com Servo cortador de filamento e Arduino para controle de purga e sensor de filamento na extrusora
+    - Kit adaptador CFS (experimental)
+
 
 ---
 
@@ -24,7 +28,14 @@ git clone --depth 1 https://github.com/Igordarin33/3dctrocador.git /usr/data/pri
 ## 🔧 Ativando o camaleaoTURBO.cfg
 Edite seu arquivo principal de configuração printer.cfg e adicione esta linha no começo:
 ```
-[include 3DC/camaleaoTURBO.cfg]
+- com servo cortador de filamento no 3dc e Arduino para controle de purga e sensor de filamento na extrusora
+
+[include 3DC/camaleaoTURBO.cfg] 
+
+- Kit adaptador CFS
+
+[include 3DC/camaleaoTURBO-CFS.cfg] 
+
 
 ```
 ### Depois comente o codigo completo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2]
@@ -45,6 +56,7 @@ managed_services:
   klipper
 ```  
 ---
+
 ## 🛠️ Configurando gcode_macro.cfg
 Depois comente o codigo de carregar o filamento original, e adicione esse: 
 Essa parte você deve alterar a temperatura, ela quem será a padrão sempre que carregar o filamento, recomendo deixar em 240 para abs, PLA em 200, ou edite da forma que preferir! 
@@ -61,7 +73,6 @@ gcode:
   LOAD_MATERIAL_RESTORE_FAN2
   
 ```
-
 
 ## ♻️ Atualizações futuras
 Depois de configurado, você poderá atualizar suas macros diretamente pela interface do Moonraker (em "Atualizações" no Fluidd/Mainsail)
@@ -90,8 +101,9 @@ Pulso	  Ação
   12º	  Seleciona Próximo
   13º	  Seleciona Aleatório
   14º	  Seleciona Pulso Extra
-  
-  ```
+   
+  ```  Cancelar
+
 ## 🤖 Funcionamento Interno
 O sistema usa dois sensores de filamento:
 Um para detectar a entrada do filamento (sensor da extrusora).
@@ -99,12 +111,10 @@ Um para detectar a saída do filamento (sensor traseiro original).
 
 A impressora ativa o pino PA0 para selecionar e injetar o filamento desejado.
 Quando o filamento atinge o sensor da extrusora, ele é automaticamente puxado.
-A remoção funciona de forma semelhante, moldando a ponta do filamento para facilitar a troca.
-
+A remoção funciona de forma semelhante, moldando a ponta do filamento ou cortando com o uso da  lamina do Kit CFS para facilitar a troca.
 
 #Entre em nosso grupo do Whatsapp: 
 [Whatsapp](https://chat.whatsapp.com/DzZdQBhz2oDE57JQHPR3aZ)
-
   
 ## Arquivos do printables e listas de peças: 
 [Printables](https://www.printables.com/model/1216331-3dchameleon-k1ck1k1max-arduino-uno-cnc-shield-v3)
