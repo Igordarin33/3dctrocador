@@ -1,16 +1,11 @@
 [respond]
 [virtual_pins]
 
-[output_pin CORTAR_DESCARGA_CONTROL]
-pin: virtual_pin:CORTAR_DESCARGA_CONTROL_pin
-value: 1  # controla o servo que corta o filamento extrusado (tipo “cocozinho”) na descarga
-
 [output_pin troca_cor]
 pin: PA0
 pwm: False
 value: 0 # pino mestre que ativa o Arduino — sem ele, nenhuma ação de troca é possível
 shutdown_value: 0
-
 
 [output_pin ABAIXAR_TEMP_PAUSE]
 pin: virtual_pin:ABAIXAR_TEMP_PAUSE_pin
@@ -140,7 +135,6 @@ insert_gcode:
   _OFF_ 
   POSICIONAR
   LOAD_MATERIAL
-  #CORTARFDESCARGA
   {% if is_paused %}
       G4 P100
       RESUME
@@ -251,13 +245,16 @@ gcode:
   
   # --- Checagens antes de qualquer ação ---
   # --- HOME X, Y, Z ---
-  {% if "x" not in printer.toolhead.homed_axes or
-        "y" not in printer.toolhead.homed_axes or
-        "z" not in printer.toolhead.homed_axes %}
-    _OFF_
-    M118 "Home XYZ necessário - executando G28"
-    G28
-  {% endif %}
+  # Substiuido pela Macro do Creality IF_NEED_HOME
+
+  #{% if "x" not in printer.toolhead.homed_axes or
+  #      "y" not in printer.toolhead.homed_axes or
+  #      "z" not in printer.toolhead.homed_axes %}
+  #  _OFF_
+  #  M118 "Home XYZ necessário - executando G28"
+  #  G28
+  #{% endif %}
+  IF_NEED_HOME
   # --- Pré aquecimento ---
   {% if printer.extruder.temperature < 200 %}
     {% if printer.extruder.temperature < temperaturabico %}
@@ -271,7 +268,7 @@ gcode:
 # --- Se for -1(alvo) e não for 9, 10, 11, realizar Homing inicial(arduino)  ---
   {% if atual == -1 and novo_alvo not in [9,10,11] %}
     M118 Realizando Homing inicial antes da troca...
-    RESPOND TYPE=command MSG="Realizando Homing do Arduino..."
+    RESPOND TYPE=command MSG="Realizando Homing do 3d Chameleon..."
     {% set homing = 11 * pulso %}
     G4 P{aguardar}
     _ON_
@@ -300,8 +297,8 @@ gcode:
       BOX_CUT_MATERIAL
       POSICIONAR
       QUIT_MATERIAL
-     # CORTARFDESCARGA
-      G0 X{eixox} Y{eixoy} F15000
+      BOX_NOZZLE_CLEAN
+      POSICIONAR
       PULSAR N=10 
       G4 P{aguardar}
       _ON_ #descarrega
@@ -383,6 +380,7 @@ gcode:
         BOX_CUT_MATERIAL
         POSICIONAR
         QUIT_MATERIAL
+        BOX_NOZZLE_CLEAN 
         G4 P{aguardar}
         G0 X{eixox} Y{eixoy} F15000    
         PULSAR N={novo_alvo}
@@ -413,7 +411,6 @@ gcode:
 description: Configuração inicial antes da impressão
 gcode:
   SET_PIN PIN=ABAIXAR_TEMP_PAUSE VALUE=1
-  SET_PIN PIN=descarga_purga VALUE=0
   M118 "Preparando..."
   M82     
   M106 S0     
@@ -430,19 +427,6 @@ gcode:
     BOX_GO_TO_EXTRUDE_POS
     G4 P400
     G92 E0
-
-
-[gcode_macro CORTARFDESCARGA]
-gcode:
-  {% if printer["output_pin CORTAR_DESCARGA_CONTROL"].value == 1 %}
-    G4 P5000
-    G1 E-1 F200
-    BOX_NOZZLE_CLEAN
-  {% else %}
-    M118 "Sem corte "
-  {% endif %}
-
-
 
 [gcode_macro _OFF_]
 description: Desliga o botão
