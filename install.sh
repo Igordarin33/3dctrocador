@@ -1,10 +1,17 @@
 #!/bin/bash
 
 # Cria a pasta 3DC se não existir
-mkdir -p /usr/data/printer_data/config/3DC
+DIR="/usr/data/printer_data/config/3DC"
+
+if [ -d "$DIR" ]; then
+  echo "Directorio '$DIR' ja  existe."
+else
+  mkdir -p $DIR
+  echo "Directorio '$DIR' criado."
+fi
 
 # Copia o arquivo principal da macro para a pasta correta
-cp troca_cor.cfg /usr/data/printer_data/config/3DC/troca_cor.cfg
+cp Config/camaleaoTURBO.cfg /usr/data/printer_data/config/3DC/Config/camaleaoTURBO.cfg
 
 # Define permissões para garantir execução
-chmod 644 /usr/data/printer_data/config/3DC/troca_cor.cfg
+chmod 644 /usr/data/printer_data/config/3DC/Config/camaleaoTURBO.cfg

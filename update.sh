@@ -1,0 +1,1 @@
+chmod 644 /usr/data/printer_data/config/3DC/Config/camaleaoTURBO.cfg

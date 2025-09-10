@@ -29,7 +29,7 @@ git clone --depth 1 https://github.com/Igordarin33/3dctrocador.git /usr/data/pri
 ## 🔧 Ativando o camaleaoTURBO.cfg
 Edite seu arquivo principal de configuração printer.cfg e adicione esta linha no começo:
 ```
-[include 3DC/camaleaoTURBO.cfg]
+[include 3DC/Config/camaleaoTURBO.cfg]
 
 ```
 ### Depois comente o codigo completo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2]
@@ -45,7 +45,7 @@ type: git_repo
 channel: stable
 path: /usr/data/printer_data/config/3DC
 origin: https://github.com/Igordarin33/3dctrocador.git
-install_script: install.sh
+install_script: update.sh
 managed_services:
   klipper
 ```  
