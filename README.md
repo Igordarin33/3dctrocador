@@ -8,12 +8,13 @@ Este projeto permite usar o sistema de troca de cor (como o 3D Chameleon) de for
 ## 📦 Requisitos
 
 - Klipper já instalado e funcionando
-- Acesso SSH ou terminal na sua impressora
+- Acesso SSH ou terminal na sua impressora (root)
+- Helper script instalado
 - Internet ativa na impressora
-- Octoacoplodor 2ch PC817
+- Octoacoplodor PC817
 - Conhecimento minimo de eletronica
 - Hardware 3d Chamaleon para 4 ou 8 cores;
-    - Com Servo cortador de filamento e Arduino para controle de purga e sensor de filamento na extrusora
+    - Com Servo cortador de filamento e Arduino para controle de purga e sensor de filamento na extrusora, ou;
     - Kit adaptador CFS (experimental)
 
 
@@ -34,7 +35,7 @@ Edite seu arquivo principal de configuração printer.cfg e adicione esta linha 
 [include 3DC/Config/camaleaoTURBO.cfg]
 
 ```
-### Depois comente o codigo completo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2]
+### Depois comente o codigo completo dos sensores [filament_switch_sensor filament_sensor] e [filament_switch_sensor filament_sensor_2] e [output_pin LED] (Caso nao use o kit CFS)
 
 ```
 ---
@@ -48,8 +49,8 @@ channel: stable
 path: /usr/data/printer_data/config/3DC
 origin: https://github.com/Igordarin33/3dctrocador.git
 install_script: update.sh
-managed_services:
-  klipper
+managed_services: klipper
+
 ```  
 ---
 ## 🛠️ Configurando gcode_macro.cfg
@@ -67,8 +68,12 @@ gcode:
   G1 E45 F300
   LOAD_MATERIAL_RESTORE_FAN2
   
-```
 
+```
+## 🛠️ Configurando camaleaoTURBO.cfg
+Ative o output_pin KIT_CFS caso fizer o uso do mesmo;
+
+```
 
 ## ♻️ Atualizações futuras
 Depois de configurado, você poderá atualizar suas macros diretamente pela interface do Moonraker (em "Atualizações" no Fluidd/Mainsail)
@@ -83,15 +88,15 @@ Após seguir os passos acima, basta reiniciar o Klipper e seu sistema de troca d
 Cada extrusora é selecionada com base no tempo de pressão do botão:
 
 Pulso	  Ação
-  1º	  Seleciona T0 (filamento 1)
-  2º	  Seleciona T1 (filamento 2)
-  3º	  Seleciona T2 (filamento 3)
-  4º	  Seleciona T3 (filamento 4)
-  5º	  Seleciona T4 (filamento 5)
-  6º	  Seleciona T5 (filamento 6)
-  7º	  Seleciona T6 (filamento 7)
-  8º	  Seleciona T7 (filamento 8)
-  9º	  Seleciona Carregar/Inicio T0
+  1º	  Seleciona T100 (filamento 1)
+  2º	  Seleciona T101 (filamento 2)
+  3º	  Seleciona T102 (filamento 3)
+  4º	  Seleciona T103 (filamento 4)
+  5º	  Seleciona T104 (filamento 5)
+  6º	  Seleciona T105 (filamento 6)
+  7º	  Seleciona T106 (filamento 7)
+  8º	  Seleciona T107 (filamento 8)
+  9º	  Seleciona Carregar/Inicio T100
   10º	  Seleciona Descarregar/Inicio
   11º	  Seleciona Inicio
   12º	  Seleciona Próximo
