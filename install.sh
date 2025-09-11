@@ -15,3 +15,4 @@ cp Config/camaleaoTURBO.cfg /usr/data/printer_data/config/3DC/Config/camaleaoTUR
 
 # Define permissões para garantir execução
 chmod 644 /usr/data/printer_data/config/3DC/Config/camaleaoTURBO.cfg
+ln -s /usr/data/helper-script/files/klipper-virtual-pins/virtual_pins.py /usr/share/klipper/klippy/extras/virtual_pins.py 

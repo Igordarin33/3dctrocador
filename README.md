@@ -10,6 +10,8 @@ Este projeto permite usar o sistema de troca de cor (como o 3D Chameleon) de for
 - Klipper já instalado e funcionando
 - Acesso SSH ou terminal na sua impressora
 - Internet ativa na impressora
+- Octoacoplodor 2ch PC817
+- Conhecimento minimo de eletronica
 - Hardware 3d Chamaleon para 4 ou 8 cores;
     - Com Servo cortador de filamento e Arduino para controle de purga e sensor de filamento na extrusora
     - Kit adaptador CFS (experimental)
