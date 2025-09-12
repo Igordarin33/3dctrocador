@@ -26,13 +26,7 @@ T106
 {if next_extruder==7}  
 T107 
 {endif}
-G4 P400
-CHAMELEON_PURGE_POSITION                                 
-G1 E[first_flush_volume] F300
-PURGA_FULL
-G92 E0            			  
-M104 S[nozzle_temperature]  		  
-M109 S[nozzle_temperature]  		   
+{endif}  
 G90               			  
 M83               			    
 {endif}  
