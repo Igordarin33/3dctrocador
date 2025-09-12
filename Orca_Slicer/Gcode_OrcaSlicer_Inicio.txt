@@ -1,28 +1,6 @@
 INICIO3DC
 M118 "Selecionando a cor inicial..."  
 {if initial_extruder==0}
-T100
-{endif}
-{if initial_extruder==1}
-T101
-{endif}
-{if initial_extruder==2}
-T102
-{endif}
-{if initial_extruder==3}
-T103
-{endif}
-{if initial_extruder==4}
-T104
-{endif}
-{if initial_extruder==5}
-T105
-{endif}
-{if initial_extruder==6}
-T106
-{endif}
-{if initial_extruder==7}
-T107
-{endif}  
+ESCOLHER N={initial_extruder}
 G4 P400                  
-INICIO_DOIS
+INICIO_ORCA

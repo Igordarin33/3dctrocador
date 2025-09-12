@@ -1,0 +1,9 @@
+{if previous_extruder>-1}  
+{if next_extruder!=previous_extruder}  
+G92 E0                 
+M83    
+ESCOLHA N={next_extruder}
+{endif}  
+G90               			  
+M83               			    
+{endif}  
